@@ -1,9 +1,9 @@
 (function () {
   "use strict";
 
-  const BTN_ID = "no-bs-proto-viewer-btn";
-  const PANEL_ATTR = "data-no-bs-proto-viewer-panel";
-  const FETCH_MSG = "NO_BS_PROTO_VIEWER_FETCH";
+  const BTN_ID = "proto-simplifier-btn";
+  const PANEL_ATTR = "data-proto-simplifier-panel";
+  const FETCH_MSG = "PROTO_SIMPLIFIER_FETCH";
   const PROTO_BLOB_RE = /^\/[^/]+\/[^/]+\/blob\/.+\.proto$/i;
   const RAW_SELECTOR = 'a[data-testid="raw-button"], a#raw-url';
 
@@ -172,7 +172,7 @@
   };
 
   function appendTokens(parent, text) {
-    const tokens = NoBsProtoViewer.tokenizeProtoLine(text);
+    const tokens = ProtoSimplifier.tokenizeProtoLine(text);
     for (const t of tokens) {
       const cls = TOKEN_CLASS[t.type];
       if (cls) {
@@ -184,6 +184,28 @@
         parent.appendChild(document.createTextNode(t.value));
       }
     }
+  }
+
+  function selectLine(root, line, opts) {
+    opts = opts || {};
+    root.querySelectorAll(".pp-row--selected").forEach(function (r) {
+      r.classList.remove("pp-row--selected");
+    });
+    const target = root.querySelector('.pp-row[data-line="' + line + '"]');
+    if (!target) return;
+    target.classList.add("pp-row--selected");
+    if (opts.scroll !== false) {
+      target.scrollIntoView({ block: "center" });
+    }
+    if (opts.updateHash !== false) {
+      location.hash = "L" + line;
+    }
+  }
+
+  function applyHashSelection(root) {
+    const m = /^#L(\d+)$/.exec(location.hash);
+    if (!m) return;
+    selectLine(root, Number(m[1]), { updateHash: false });
   }
 
   function buildCodeView(lines) {
@@ -200,6 +222,21 @@
       const ln = document.createElement("span");
       ln.className = "pp-ln";
       ln.textContent = l.srcLine != null ? String(l.srcLine) : "";
+      if (l.srcLine != null) {
+        row.dataset.line = String(l.srcLine);
+        ln.setAttribute("role", "button");
+        ln.setAttribute("tabindex", "0");
+        ln.setAttribute("aria-label", "Select line " + l.srcLine);
+        ln.addEventListener("click", function () {
+          selectLine(root, l.srcLine);
+        });
+        ln.addEventListener("keydown", function (ev) {
+          if (ev.key === "Enter" || ev.key === " ") {
+            ev.preventDefault();
+            selectLine(root, l.srcLine);
+          }
+        });
+      }
       const code = document.createElement("span");
       code.className = "pp-src";
       appendTokens(code, l.text);
@@ -242,7 +279,7 @@
     const style = document.createElement("style");
     style.textContent = css;
     const codeView = buildCodeView(
-      NoBsProtoViewer.simplifyProtoLines(content, opts)
+      ProtoSimplifier.simplifyProtoLines(content, opts)
     );
     shadow.appendChild(style);
     shadow.appendChild(codeView);
@@ -259,6 +296,7 @@
     view.active = true;
     setButtonLabel("Show original");
     clearStickyOverlap(host);
+    applyHashSelection(codeView);
   }
 
   function deactivate() {
@@ -286,9 +324,9 @@
       await activate(content);
     } catch (e) {
       setButtonLabel("Simplify");
-      console.error("[No BS proto viewer]", e);
+      console.error("[Proto Simplifier]", e);
       window.alert(
-        "No BS proto viewer could not load the file content.\n" +
+        "Proto Simplifier could not load the file content.\n" +
           (e && e.message ? e.message : String(e))
       );
     }
@@ -369,6 +407,12 @@
         }
       }, 150)
     );
+
+    window.addEventListener("hashchange", function () {
+      if (!view.active || !view.panelHost || !view.panelHost.isConnected) return;
+      const root = view.panelHost.shadowRoot.querySelector(".pp-code");
+      if (root) applyHashSelection(root);
+    });
   }
 
   start();

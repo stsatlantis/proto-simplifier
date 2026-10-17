@@ -1,4 +1,4 @@
-const FETCH_MSG = "NO_BS_PROTO_VIEWER_FETCH";
+const FETCH_MSG = "PROTO_SIMPLIFIER_FETCH";
 
 function isAllowedRawUrl(rawUrl) {
   let url;

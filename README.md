@@ -1,4 +1,4 @@
-# No BS proto viewer
+# Proto Simplifier
 
 A Chrome extension (Manifest V3) that adds a **Simplify** button to GitHub
 `.proto` file views. Clicking it strips annotation/option noise and comments so
@@ -65,7 +65,7 @@ already open, it re-renders automatically):
 ## Project layout
 
 ```
-no-bs-proto-viewer/
+proto-simplifier/
   manifest.json          # MV3 manifest
   popup.html / popup.js  # settings popup (keep comments / annotations / blank lines)
   src/
@@ -82,7 +82,7 @@ no-bs-proto-viewer/
 
 1. Clone/open this folder.
 2. Open `chrome://extensions`, enable **Developer mode** (top right).
-3. Click **Load unpacked** and select the `no-bs-proto-viewer/` directory.
+3. Click **Load unpacked** and select the `proto-simplifier/` directory.
 4. Open any GitHub `.proto` file (e.g.
    `https://github.com/googleapis/googleapis/blob/master/google/api/annotations.proto`)
    and click **Simplify** next to the **Raw** button.
@@ -96,7 +96,7 @@ The transform is a dependency-free pure module, tested with Node's built-in
 runner:
 
 ```
-cd no-bs-proto-viewer
+cd proto-simplifier
 node --test
 ```
 

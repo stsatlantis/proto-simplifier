@@ -36,6 +36,31 @@
   background: var(--bgColor-muted, var(--color-canvas-subtle, #f6f8fa));
 }
 
+.pp-ln[role="button"] {
+  cursor: pointer;
+}
+
+.pp-ln[role="button"]:hover {
+  color: var(--fgColor-default, var(--color-fg-default, #1f2328));
+  text-decoration: underline;
+}
+
+.pp-ln[role="button"]:focus-visible {
+  outline: 2px solid
+    var(--borderColor-accent-emphasis, var(--color-accent-emphasis, #0969da));
+  outline-offset: -2px;
+}
+
+.pp-row--selected {
+  background: var(--bgColor-attention-muted, var(--color-attention-subtle, #fff8c5));
+}
+
+.pp-row--selected .pp-ln {
+  background: var(--bgColor-attention-muted, var(--color-attention-subtle, #fff8c5));
+  color: var(--fgColor-default, var(--color-fg-default, #1f2328));
+  font-weight: 600;
+}
+
 .pp-src {
   flex: 1 0 auto;
   padding-right: 16px;
@@ -70,6 +95,22 @@
   .pp-ln {
     color: var(--fgColor-muted, var(--color-fg-muted, #8b949e));
     background: var(--bgColor-muted, var(--color-canvas-subtle, #161b22));
+  }
+  .pp-ln[role="button"]:hover {
+    color: var(--fgColor-default, var(--color-fg-default, #e6edf3));
+  }
+  .pp-row--selected {
+    background: var(
+      --bgColor-attention-muted,
+      var(--color-attention-subtle, rgba(187, 128, 9, 0.15))
+    );
+  }
+  .pp-row--selected .pp-ln {
+    background: var(
+      --bgColor-attention-muted,
+      var(--color-attention-subtle, rgba(187, 128, 9, 0.15))
+    );
+    color: var(--fgColor-default, var(--color-fg-default, #e6edf3));
   }
   .pp-k {
     color: var(--color-prettylights-syntax-keyword, #ff7b72);

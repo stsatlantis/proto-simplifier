@@ -1,11 +1,11 @@
-# Chrome Web Store Listing — No BS proto viewer
+# Chrome Web Store Listing — Proto Simplifier
 
 > Last Updated: 2026-10-17
 
 ## Store Listing
 
 **Extension Name**
-No BS proto viewer
+Proto Simplifier
 
 **Short Description**
 <!-- Max 132 characters -->
@@ -13,9 +13,9 @@ Simplifies .proto files on GitHub by hiding annotation clutter so you can read t
 
 **Detailed Description**
 <!-- Max 16,000 characters -->
-No BS proto viewer adds a Simplify button next to the Raw button on any .proto file view on GitHub. Click it to see the file with annotation and option noise stripped away, so the real structure of your messages and fields is easy to read.
+Proto Simplifier adds a Simplify button next to the Raw button on any .proto file view on GitHub. Click it to see the file with annotation and option noise stripped away, so the real structure of your messages and fields is easy to read.
 
-Protocol Buffer files are often covered in verbose annotations for API documentation, validation rules, and code generation. These are useful to tools but make the schema hard to read at a glance. No BS proto viewer hides that noise on demand, without changing the file on GitHub.
+Protocol Buffer files are often covered in verbose annotations for API documentation, validation rules, and code generation. These are useful to tools but make the schema hard to read at a glance. Proto Simplifier hides that noise on demand, without changing the file on GitHub.
 
 Key features: a simplified, syntax-highlighted view of the file with the original line numbers preserved in a gutter, so you can always map a simplified line back to its real position in the file. Settings let you choose whether to keep comments, keep specific annotations by name, and whether removed lines leave a blank space or are compacted away. Your choices are remembered across browsing sessions.
 
@@ -83,14 +83,14 @@ No data is collected, transmitted to the developer, or shared with any third par
 **Privacy Policy URL** [REQUIRED — not yet set]
 <!-- Host the policy text below at a public URL (GitHub Pages, a gist, etc.) before submitting. -->
 
-Suggested policy text (see draft below) — host at e.g. `https://<username>.github.io/no-bs-proto-viewer/privacy` or a GitHub Gist, then paste the URL here.
+Suggested policy text (see draft below) — host at e.g. `https://<username>.github.io/proto-simplifier/privacy` or a GitHub Gist, then paste the URL here.
 
 ---
-**Privacy Policy — No BS proto viewer**
+**Privacy Policy — Proto Simplifier**
 
 Last updated: 2026-10-17
 
-No BS proto viewer does not collect, store, or transmit any personal data or browsing history to the developer or any third party.
+Proto Simplifier does not collect, store, or transmit any personal data or browsing history to the developer or any third party.
 
 The extension reads the content of `.proto` files you view on github.com, solely to display a simplified version of that file within your browser tab. For very large files, the extension fetches the file's raw contents directly from github.com or githubusercontent.com — the same request your browser would make anyway to show you the file.
 

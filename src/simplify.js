@@ -1,6 +1,6 @@
 (function (root, factory) {
   const api = factory();
-  root.NoBsProtoViewer = api;
+  root.ProtoSimplifier = api;
   if (typeof module !== "undefined" && module.exports) {
     module.exports = api;
   }
