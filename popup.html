@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #ffffff;
+        --fg: #1f2328;
+        --muted: #6e7781;
+        --border: #d0d7de;
+        --field: #ffffff;
+        --accent: #0969da;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0d1117;
+          --fg: #e6edf3;
+          --muted: #8b949e;
+          --border: #30363d;
+          --field: #0d1117;
+          --accent: #4493f8;
+        }
+      }
+      body {
+        width: 300px;
+        margin: 0;
+        padding: 14px;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+          Arial, sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      h1 {
+        font-size: 14px;
+        margin: 0 0 10px;
+      }
+      .row {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin: 10px 0;
+      }
+      .row input[type="checkbox"] {
+        margin-top: 2px;
+      }
+      label.field {
+        display: block;
+        margin: 12px 0 4px;
+        font-weight: 600;
+      }
+      textarea {
+        width: 100%;
+        box-sizing: border-box;
+        resize: vertical;
+        min-height: 84px;
+        padding: 6px 8px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--field);
+        color: var(--fg);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+      }
+      .hint {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 11px;
+      }
+      .status {
+        min-height: 16px;
+        margin-top: 8px;
+        color: var(--accent);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>No BS proto viewer</h1>
+
+    <div class="row">
+      <input type="checkbox" id="keepComments" />
+      <label for="keepComments">Keep comments</label>
+    </div>
+
+    <div class="row">
+      <input type="checkbox" id="preserveBlanks" />
+      <label for="preserveBlanks">
+        Keep blank lines where removed content was (otherwise compact)
+      </label>
+    </div>
+
+    <label class="field" for="keepAnnotations">Keep these annotations</label>
+    <textarea
+      id="keepAnnotations"
+      spellcheck="false"
+      placeholder="one per line, e.g.&#10;field_behavior&#10;google.api.resource"
+    ></textarea>
+    <p class="hint">
+      Match by full name or trailing name — <code>field_behavior</code> keeps
+      <code>google.api.field_behavior</code>. Everything else is stripped.
+      Changes apply the next time you Simplify.
+    </p>
+
+    <div class="status" id="status"></div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

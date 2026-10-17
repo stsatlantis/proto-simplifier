@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "No BS proto viewer",
+  "version": "0.1.0",
+  "description": "Adds a Simplify button to GitHub .proto file views that strips annotation and comment noise.",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "No BS proto viewer settings",
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["src/simplify.js", "src/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "src/service-worker.js",
+    "type": "module"
+  },
+  "host_permissions": [
+    "https://github.com/*",
+    "https://*.githubusercontent.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["styles/panel.css"],
+      "matches": ["https://github.com/*"]
+    }
+  ]
+}

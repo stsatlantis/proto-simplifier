@@ -1,0 +1,92 @@
+:host {
+  display: block;
+}
+
+.pp-code {
+  margin: 0;
+  padding: 8px 0;
+  overflow-x: auto;
+  border: 1px solid
+    var(--borderColor-default, var(--color-border-default, #d0d7de));
+  border-radius: 6px;
+  background: var(--bgColor-muted, var(--color-canvas-subtle, #f6f8fa));
+  color: var(--fgColor-default, var(--color-fg-default, #1f2328));
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  tab-size: 4;
+}
+
+.pp-row {
+  display: flex;
+  white-space: pre;
+  min-height: 1.5em;
+}
+
+.pp-ln {
+  flex: 0 0 auto;
+  width: var(--pp-ln-width, 4ch);
+  padding: 0 16px 0 10px;
+  text-align: right;
+  user-select: none;
+  position: sticky;
+  left: 0;
+  color: var(--fgColor-muted, var(--color-fg-muted, #6e7781));
+  background: var(--bgColor-muted, var(--color-canvas-subtle, #f6f8fa));
+}
+
+.pp-src {
+  flex: 1 0 auto;
+  padding-right: 16px;
+}
+
+.pp-k {
+  color: var(--color-prettylights-syntax-keyword, #cf222e);
+}
+.pp-t {
+  color: var(
+    --color-prettylights-syntax-storage-modifier-import,
+    var(--color-prettylights-syntax-entity, #953800)
+  );
+}
+.pp-s {
+  color: var(--color-prettylights-syntax-string, #0a3069);
+}
+.pp-n {
+  color: var(--color-prettylights-syntax-constant, #0550ae);
+}
+.pp-c {
+  color: var(--color-prettylights-syntax-comment, #6e7781);
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pp-code {
+    border-color: var(--borderColor-default, var(--color-border-default, #30363d));
+    background: var(--bgColor-muted, var(--color-canvas-subtle, #161b22));
+    color: var(--fgColor-default, var(--color-fg-default, #e6edf3));
+  }
+  .pp-ln {
+    color: var(--fgColor-muted, var(--color-fg-muted, #8b949e));
+    background: var(--bgColor-muted, var(--color-canvas-subtle, #161b22));
+  }
+  .pp-k {
+    color: var(--color-prettylights-syntax-keyword, #ff7b72);
+  }
+  .pp-t {
+    color: var(
+      --color-prettylights-syntax-storage-modifier-import,
+      var(--color-prettylights-syntax-entity, #ffa657)
+    );
+  }
+  .pp-s {
+    color: var(--color-prettylights-syntax-string, #a5d6ff);
+  }
+  .pp-n {
+    color: var(--color-prettylights-syntax-constant, #79c0ff);
+  }
+  .pp-c {
+    color: var(--color-prettylights-syntax-comment, #8b949e);
+  }
+}
